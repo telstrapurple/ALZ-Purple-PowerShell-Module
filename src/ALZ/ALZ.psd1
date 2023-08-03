@@ -101,24 +101,24 @@
 
         PSData = @{
 
-            Name                       = "ALZ-PURPLE"
+            Name                       = "ALZ"
 
             # Tags applied to this module. These help with module discovery in online galleries.
             Tags                       = @(
                 'Azure'
                 'LandingZones'
-                'ALZ-Purple',
+                'ALZ',
                 'Purple'
             )
 
             # A URL to the license for this module.
-            LicenseUri                 = 'https://github.com/telstrapurple/ALZ-Purple-PowerShell-Module/blob/main/LICENSE'
+            LicenseUri                 = 'https://github.com/telstrapurple/ALZ-PowerShell-Module/blob/main/LICENSE'
 
             # A URL to the main website for this project.
-            ProjectUri                 = 'https://github.com/telstrapurple/ALZ-Purple-PowerShell-Module/'
+            ProjectUri                 = 'https://github.com/telstrapurple/ALZ-PowerShell-Module/'
 
             # A URL to an icon representing this module.
-            IconUri                    = 'https://github.com/telstrapurple/ALZ-Purple-PowerShell-Module/main/docs/rsz_alzlogo.png'
+            IconUri                    = 'https://github.com/telstrapurple/ALZ-PowerShell-Module/main/docs/rsz_alzlogo.png'
 
             # ReleaseNotes of this module
             # ReleaseNotes               = 'This is the first release of the ALZ PowerShell Module. This module is currently in preview and is subject to change.'
