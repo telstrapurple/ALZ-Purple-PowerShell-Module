@@ -57,14 +57,14 @@ jobs:
         ./package_ALZ.ps1 -version ${{ steps.create_release.outputs.tag_name }}
     - uses: montudor/action-zip@v1
       with:
-          args: zip -qq -r ALZ.zip ALZ
+          args: zip -qq -r ALZ-PURPLE.zip ALZ
     - uses: actions/upload-release-asset@v1.0.1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./ALZ.zip
-        asset_name: ALZ.zip
+        asset_path: ./ALZ-PURPLE.zip
+        asset_name: ALZ-PURPLE.zip
         asset_content_type: application/zip
     - uses: eregon/publish-release@v1
       env:
