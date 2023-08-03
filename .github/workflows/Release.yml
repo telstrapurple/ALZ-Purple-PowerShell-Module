@@ -57,14 +57,14 @@ jobs:
         ./package_ALZ.ps1 -version ${{ steps.create_release.outputs.tag_name }}
     - uses: montudor/action-zip@v1
       with:
-          args: zip -qq -r ALZ-PURPLE.zip ALZ
+          args: zip -qq -r ALZPurple.zip ALZ
     - uses: actions/upload-release-asset@v1.0.1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./ALZ-PURPLE.zip
-        asset_name: ALZ-PURPLE.zip
+        asset_path: ./ALZPurple.zip
+        asset_name: ALZPurple.zip
         asset_content_type: application/zip
     - uses: eregon/publish-release@v1
       env:
@@ -76,4 +76,4 @@ jobs:
       run: |
         ls
         Get-Module -ListAvailable
-        Publish-Module -Path "./ALZ-PURPLE" -NuGetApiKey ${{ secrets.POWERSHELL_GALLERY_KEY }} -ReleaseNotes "${{ steps.create_release.outputs.body }}" -Force
+        Publish-Module -Path "./ALZPurple" -NuGetApiKey ${{ secrets.POWERSHELL_GALLERY_KEY }} -ReleaseNotes "${{ steps.create_release.outputs.body }}" -Force
