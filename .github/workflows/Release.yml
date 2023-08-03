@@ -75,4 +75,4 @@ jobs:
       shell: pwsh
       run: |
         ls
-        Publish-Module -Path "./ALZ" -NuGetApiKey ${{ secrets.POWERSHELL_GALLERY_KEY }} -ReleaseNotes "${{ steps.create_release.outputs.body }}" -Force
+        Publish-Module -Path "./ALZ-PURPLE" -NuGetApiKey ${{ secrets.POWERSHELL_GALLERY_KEY }} -ReleaseNotes "${{ steps.create_release.outputs.body }}" -Force
