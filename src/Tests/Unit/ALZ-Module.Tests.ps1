@@ -14,13 +14,13 @@ Describe 'Module Tests' -Tag Unit {
             { $script:manifestEval = Test-ModuleManifest -Path $PathToManifest } | Should -Not -Throw
             $? | Should -BeTrue
         } #manifestTest
-        It 'root module ALZ.psm1 should exist' {
+        It 'root module ALZ-PURPLE.psm1 should exist' {
             $PathToModule | Should -Exist
             $? | Should -BeTrue
         } #psm1Exists
-        It 'manifest should contain ALZ.psm1' {
+        It 'manifest should contain ALZ-PURPLE.psm1' {
             $PathToManifest |
-            Should -FileContentMatchExactly "ALZ.psm1"
+            Should -FileContentMatchExactly "ALZ-PURPLE.psm1"
         } #validPSM1
         It 'should have a matching module name in the manifest' {
             $script:manifestEval.Name | Should -BeExactly $ModuleName
