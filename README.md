@@ -81,7 +81,7 @@ In order to develop this module you will need PowerShell 7.1 or later.
 
 ```powershell
 # Install the module locally
-Invoke-Build -File .\src\ALZ.build.ps1
+Invoke-Build -File .\src\ALZPurple.build.ps1
 Import-Module .\src\Artifacts\ALZPurple.psd1 -Force
 ```
 
