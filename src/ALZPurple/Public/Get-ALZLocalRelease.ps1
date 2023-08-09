@@ -1,9 +1,9 @@
-function Get-ALZGithubRelease {
+function Get-ALZLocalRelease {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory = $true, Position = 1, HelpMessage = "Please Provide the location of the local source directory.")]
         [string]
-        $localSourceDirectory,
+        $localSourcePackagePath,
 
         [Parameter(Mandatory = $false, Position = 3, HelpMessage = "The directory to download the releases to. Defaults to the current directory.")]
         [string]
@@ -42,7 +42,10 @@ function Get-ALZGithubRelease {
         if ($null -eq $contentInReleaseDirectory) {
             Write-Verbose "===> Pulling and extracting release $($release.tag_name) into $releaseDirectory"
             New-Item -ItemType Directory -Path "$releaseDirectory/tmp" | Out-String | Write-Verbose
-            Invoke-WebRequest -Uri "https://github.com/$repoOrgPlusRepo/archive/refs/tags/$($release.tag_name).zip" -OutFile "$releaseDirectory/tmp/$($release.tag_name).zip" | Out-String | Write-Verbose
+            #copy the zip file to the tmp directory
+            Copy-Item -Path $localSourcePackagePath -Destination "$releaseDirectory/tmp/$($release.tag_name).zip"
+
+            # Invoke-WebRequest -Uri "https://github.com/$repoOrgPlusRepo/archive/refs/tags/$($release.tag_name).zip" -OutFile "$releaseDirectory/tmp/$($release.tag_name).zip" | Out-String | Write-Verbose
             Expand-Archive -Path "$releaseDirectory/tmp/$($release.tag_name).zip" -DestinationPath "$releaseDirectory/tmp/extracted" | Out-String | Write-Verbose
             $extractedSubFolder = Get-ChildItem -Path "$releaseDirectory/tmp/extracted" -Directory
 

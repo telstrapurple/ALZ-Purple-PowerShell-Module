@@ -33,6 +33,11 @@ function New-ALZEnvironment {
         [string] $alzBicepVersion = "v0.16.1",
 
         [Parameter(Mandatory = $false)]
+        [Alias("LocalReleaseDirectory")]
+        [Alias("L")]
+        [string] $localReleaseDirectory = $null,
+
+        [Parameter(Mandatory = $false)]
         [ValidateSet("bicep", "terraform")]
         [Alias("Iac")]
         [string] $alzIacProvider = "bicep",
@@ -62,7 +67,13 @@ function New-ALZEnvironment {
 
         $alzEnvironmentDestinationInternalCode = Join-Path $alzEnvironmentDestination "upstream-releases"
 
-        Get-ALZGithubRelease -directoryForReleases $alzEnvironmentDestinationInternalCode -githubRepoUrl $bicepConfig.module_url -releases @($bicepConfig.version) | Out-String | Write-Verbose
+        if(-not $localReleaseDirectory)
+        {
+            Get-ALZGithubRelease -directoryForReleases $alzEnvironmentDestinationInternalCode -githubRepoUrl $bicepConfig.module_url -releases @($bicepConfig.version) | Out-String | Write-Verbose
+        }
+        else {
+            Get-ALZLocalRelease -directoryForReleases $alzEnvironmentDestinationInternalCode -localReleaseDirectory $alzBicepSourceDirectory -releases @($bicepConfig.version) | Out-String | Write-Verbose
+        }
 
         Write-InformationColored "Copying ALZ-Bicep module to $alzEnvironmentDestinationInternalCode" -ForegroundColor Green -InformationAction Continue
         Copy-ALZParametersFile -alzEnvironmentDestination $alzEnvironmentDestination -upstreamReleaseDirectory $(Join-Path $alzEnvironmentDestinationInternalCode $bicepConfig.version) -configFiles $bicepConfig.config_files | Out-String | Write-Verbose
