@@ -33,9 +33,9 @@ function New-ALZEnvironment {
         [string] $alzBicepVersion = "v0.16.1",
 
         [Parameter(Mandatory = $false)]
-        [Alias("LocalReleaseDirectory")]
-        [Alias("L")]
-        [string] $localReleaseDirectory = $null,
+        [Alias("localSourcePackagePath")]
+        [Alias("LS")]
+        [string] $localSourcePackagePath = $null,
 
         [Parameter(Mandatory = $false)]
         [ValidateSet("bicep", "terraform")]
