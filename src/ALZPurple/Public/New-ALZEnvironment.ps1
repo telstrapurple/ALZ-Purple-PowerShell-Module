@@ -67,11 +67,9 @@ function New-ALZEnvironment {
 
         $alzEnvironmentDestinationInternalCode = Join-Path $alzEnvironmentDestination "upstream-releases"
 
-        if(-not $localReleaseDirectory)
-        {
+        if (-not $localReleaseDirectory) {
             Get-ALZGithubRelease -directoryForReleases $alzEnvironmentDestinationInternalCode -githubRepoUrl $bicepConfig.module_url -releases @($bicepConfig.version) | Out-String | Write-Verbose
-        }
-        else {
+        } else {
             Get-ALZLocalRelease -directoryForReleases $alzEnvironmentDestinationInternalCode -localReleaseDirectory $alzBicepSourceDirectory -releases @($bicepConfig.version) | Out-String | Write-Verbose
         }
 
