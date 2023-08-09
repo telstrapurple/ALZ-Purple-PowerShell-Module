@@ -40,7 +40,11 @@ function New-ALZEnvironment {
         [Parameter(Mandatory = $false)]
         [ValidateSet("github", "azuredevops")]
         [Alias("Cicd")]
-        [string] $alzCicdPlatform = "github"
+        [string] $alzCicdPlatform = "github",
+
+        [Parameter(Mandatory = $false)]
+        [Alias("alzBicepSourceDirectory")]
+        [string] $alzBicepSourceDirectory
     )
 
     Write-InformationColored "Getting ready to create a new ALZ environment with you..." -ForegroundColor Green -InformationAction Continue

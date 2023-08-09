@@ -21,16 +21,16 @@
     GUID              = 'f5b5a5e1-8f7d-4f6f-8eac-2b5a5d9c6c8c'
 
     # Author of this module
-    Author            = 'Microsoft Corporation'
+    Author            = 'Telstra Purple'
 
     # Company or vendor of this module
-    CompanyName       = 'Microsoft Corporation'
+    CompanyName       = 'Telstra Purple'
 
     # Copyright statement for this module
-    Copyright         = '(c) Microsoft Corporation. All rights reserved.'
+    Copyright         = '(c) Telstra Corporation. All rights reserved.'
 
     # Description of the functionality provided by this module
-    Description       = 'Azure Landing Zones Powershell Module'
+    Description       = 'Azure Landing Zones PowerShell Module for Telstra Purple. This is built on top of Microsoft ALZ but with a Telstra Purple twist.'
 
     # Minimum version of the PowerShell engine required by this module
     # PowerShellVersion = ''
