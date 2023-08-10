@@ -20,7 +20,7 @@ InModuleScope 'ALZPurple' {
         Context 'Initialize config get the correct base values' {
             BeforeEach {
 
-                Mock -CommandName Copy-Item -ParameterFilter { $localSourcePackagePath -eq "." } -MockWith {
+                Mock -CommandName Copy-Item -ParameterFilter { $localSourceDirectory -eq "." } -MockWith {
                     [PSCustomObject]@{
                         ContentLength64 = 100
                     }
