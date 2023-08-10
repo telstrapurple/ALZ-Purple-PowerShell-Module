@@ -46,7 +46,7 @@ function Get-ALZLocalRelease {
         Write-Verbose "===> Pulling and extracting release $($releaseVersion) into $releaseDirectory"
         New-Item -ItemType Directory -Path "$releaseDirectory/tmp" | Out-String | Write-Verbose
         #copy the zip file to the tmp directory
-        Copy-Item -Path $releaseDirectory -Destination "$releaseDirectory/tmp/$($releaseVersion).zip" -Confirm
+        Copy-Item -Path $localSourceDirectory/$releaseVersion -Destination "$releaseDirectory/tmp/$($releaseVersion).zip" -Confirm
 
         # Invoke-WebRequest -Uri "https://github.com/$repoOrgPlusRepo/archive/refs/tags/$($release.tag_name).zip" -OutFile "$releaseDirectory/tmp/$($release.tag_name).zip" | Out-String | Write-Verbose
         Expand-Archive -Path "$releaseDirectory/tmp/$releaseVersion.zip" -DestinationPath "$releaseDirectory/tmp/extracted" | Out-String | Write-Verbose
