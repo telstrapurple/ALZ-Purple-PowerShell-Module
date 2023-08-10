@@ -70,7 +70,7 @@ function New-ALZEnvironment {
         if (-not $localSourcePackagePath) {
             Get-ALZGithubRelease -directoryForReleases $alzEnvironmentDestinationInternalCode -githubRepoUrl $bicepConfig.module_url -releases @($bicepConfig.version) | Out-String | Write-Verbose
         } else {
-            Get-ALZLocalRelease -directoryForReleases $alzEnvironmentDestinationInternalCode -localSourcePackagePath $localSourcePackagePath | Out-String | Write-Verbose
+            Get-ALZLocalRelease -directoryForReleases $alzEnvironmentDestinationInternalCode -localSourceDirectory $localSourcePackagePath -releaseVersion $alzBicepVersion | Out-String | Write-Verbose
         }
 
         Write-InformationColored "Copying ALZ-Bicep module to $alzEnvironmentDestinationInternalCode" -ForegroundColor Green -InformationAction Continue
