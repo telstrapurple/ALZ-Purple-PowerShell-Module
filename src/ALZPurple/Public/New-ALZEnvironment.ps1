@@ -47,7 +47,6 @@ function New-ALZEnvironment {
         [string] $alzCicdPlatform = "github",
 
         [Parameter(Mandatory = $false)]
-        [Alias("alzBicepSourceDirectory")]
         [string] $alzBicepSourceDirectory
     )
 
