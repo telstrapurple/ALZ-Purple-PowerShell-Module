@@ -33,7 +33,6 @@ function New-ALZEnvironment {
         [string] $alzBicepVersion = "v0.16.1",
 
         [Parameter(Mandatory = $false)]
-        [Alias("localSourcePackagePath")]
         [Alias("LS")]
         [string] $localSourcePackagePath = $null,
 
