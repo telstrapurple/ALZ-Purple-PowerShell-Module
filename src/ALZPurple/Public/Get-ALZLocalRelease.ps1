@@ -29,7 +29,7 @@ function Get-ALZLocalRelease {
     }
 
     # Check the firectory for this release
-    $releaseDirectory = "$directoryForReleases/$releaseVersion"
+    $releaseDirectory = Join-Path $directoryForReleases $releaseVersion
 
     Write-Verbose "===> Checking if directory for package name exists: $releaseDirectory"
 
@@ -46,11 +46,20 @@ function Get-ALZLocalRelease {
         Write-Verbose "===> Pulling and extracting release $($releaseVersion) into $releaseDirectory"
         New-Item -ItemType Directory -Path "$releaseDirectory/tmp" | Out-String | Write-Verbose
         #copy the zip file to the tmp directory
-        Copy-Item -Path $localSourceDirectory/$releaseVersion -Destination "$releaseDirectory/tmp/$($releaseVersion).zip" -Confirm
+
+        if (!(Test-Path $localSourceDirectory)) {
+            Write-Verbose "Local source direcotry does not exist for release $($releaseVersion), Please check the file location"
+            return $false
+        }
+
+        $archiveTempPath = Join-Path $releaseDirectory 'tmp' "$releaseVersion.zip"
+        $extractionFolderPath = Join-Path $releaseDirectory 'tmp' 'extracted'
+
+        Copy-Item -Path $localSourceDirectory -Destination $archiveTempPath -Confirm:$false | Out-String | Write-Verbose
 
         # Invoke-WebRequest -Uri "https://github.com/$repoOrgPlusRepo/archive/refs/tags/$($release.tag_name).zip" -OutFile "$releaseDirectory/tmp/$($release.tag_name).zip" | Out-String | Write-Verbose
-        Expand-Archive -Path "$releaseDirectory/tmp/$releaseVersion.zip" -DestinationPath "$releaseDirectory/tmp/extracted" | Out-String | Write-Verbose
-        $extractedSubFolder = Get-ChildItem -Path "$releaseDirectory/tmp/extracted" -Directory
+        Expand-Archive -Path $archiveTempPath -DestinationPath $extractionFolderPath | Out-String | Write-Verbose
+        $extractedSubFolder = Get-ChildItem -Path $extractionFolderPath -Directory
 
         if ($null -ne $directoryAndFilesToKeep) {
             foreach ($path in $directoryAndFilesToKeep) {
